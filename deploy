@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Copy website files
+sudo cp -r ./public/* /var/www/
+
+# Update revisions number
+bash "scripts/update_version" > /dev/null
+
+echo "Finished deploying version $(cat version)"
+
+
