@@ -1,25 +1,33 @@
 <html>
-<head>
-    <!-- Materialize Requirements -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
-</head>
-<body class="grey lighten-3">
-    <nav class="blue">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">S.M.A.T.</a>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="card col s12">
-            <div class="card-content">
-                <p class="card-title center-align">The official server of 5253 Forbes</p>
-            <div class="card-content">
-        </div>
-    </div>
-
-    <!-- Javascript Imports -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-</body>
+	<head>
+		<!-- Import CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+		<link rel="stylesheet" href="css/smat.css">
+		<link rel="stylesheet" href="css/weather_widget.css">
+		<link rel="stylesheet" href="css/displayday.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		
+		<!-- Google Calendar API -->
+		<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
+	</head>
+    <body>
+		<div class="height_wrap"> <!-- Column height adjustment wrapper -->
+			<div id="displayday" class="eq_col anchor"></div>
+			<div id="weather_background" class="eq_col weather_color">
+				<div id="weather">
+					<img src="https://i1.wp.com/cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif" alt="Loading..." class="loading">
+				</div>
+			</div><!-- Weather Widget: Docs at http://http://simpleweatherjs.com -->
+		</div>
+		
+        
+        <!-- Import Javascript -->
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/smat.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
+		<script type="text/javascript" src="js/displayday.js"></script>
+		<script type="text/javascript" src="js/weather_widget.js"></script>
+    </body>
 </html>

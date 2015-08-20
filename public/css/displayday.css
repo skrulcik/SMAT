@@ -1,0 +1,15 @@
+#displayday p,
+#displayday h1,
+#displayday h2,
+#displayday h3,
+#displayday h4,
+#displayday h5,
+#displayday h6 {
+	margin: 0;
+	padding: 15px;
+	text-align: center;
+}
+
+#displayday div {
+	width: 100%;
+}

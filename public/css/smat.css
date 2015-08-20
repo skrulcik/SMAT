@@ -1,0 +1,25 @@
+.eq_col, .eq_col:before {
+    width:50%;
+}
+.eq_col {
+    float:left;
+}
+.eq_col:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    left: 50%;
+    background-color: #5f6673;
+}
+
+.eq_col.anchor:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    left: 0;
+    background: #fff;
+}
