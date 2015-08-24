@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 // Your Client ID can be retrieved from your project in the Google
 // Developer Console, https://console.developers.google.com
-var CLIENT_ID = '<YOUR_CLIENT_ID>';
+var CLIENT_ID = '<RAW_CLIENT_ID>';
 
 var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 
@@ -86,21 +86,11 @@ function listUpcomingEvents() {
 
 	request.execute(function(resp) {
 	var events = resp.items;
-	appendPre('Upcoming events:');
-
 	if (events.length > 0) {
-		for (i = 0; i < events.length; i++) {
-			var event = events[i];
-			var when = event.start.dateTime;
-			if (!when) {
-				when = event.start.date;
-			}
-			appendPre(event.summary + ' (' + when + ')')
-		}
+		appendPre(htmlForCalendarEventList(events));
 	} else {
 		appendPre('No upcoming events found.');
 	}
-	
 	});
 }
 
@@ -111,7 +101,36 @@ function listUpcomingEvents() {
 * @param {string} message Text to be placed in pre element.
 */
 function appendPre(message) {
-	var pre = document.getElementById('output');
-	var textContent = document.createTextNode(message + '\n');
-	pre.appendChild(textContent);
+    var currentHTML = $('#output').html();
+    $('#output').html(currentHTML + message);
 }
+
+
+/**
+* Render event cells, and combine them together to make a list of
+* calendar event views from calendar event objects.
+*/
+function htmlForCalendarEventList(events) {
+    html = '<ul class="collection">';
+    for (i = 0; i < events.length; i++) {
+        html += htmlForCalendarEvent(events[i]);
+    }
+    html += '</ul>';
+    return html;
+}
+
+
+/**
+* Render a decent looking Event Box for Google Calendar event
+* Assumes Materialize.css is loaded
+*/
+function htmlForCalendarEvent(event) {
+    var startTime = event.start.dateTime;
+    if (!startTime) {
+        startTime = event.start.date;
+    }
+    var startTimeString = moment(startTime).fromNow();
+    return '<li class="collection-item"><h5>' + event.summary
+                + '</h5><p>' + startTimeString + '</p></li>';
+}
+
