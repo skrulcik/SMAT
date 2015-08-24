@@ -12,7 +12,21 @@
 	</head>
     <body>
 		<div class="height_wrap"> <!-- Column height adjustment wrapper -->
-			<div id="displayday" class="eq_col anchor"></div>
+			<div class="eq_col anchor">
+				<div id="displayday">
+					<!-- Displays Month, day, and day of week -->
+				</div>
+				<div id="displayevents">
+					<div id="authorize-div" style="display: none">
+						<span>Authorize access to Google Calendar API</span>
+						<!--Button for the user to click to initiate auth sequence -->
+						<button id="authorize-button" onclick="handleAuthClick(event)">
+						Authorize
+						</button>
+					</div>
+					<pre id="output"></pre>
+				</div>
+			</div>
 			<div id="weather_background" class="eq_col weather_color">
 				<div id="weather">
 					<img src="https://i1.wp.com/cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif" alt="Loading..." class="loading">
