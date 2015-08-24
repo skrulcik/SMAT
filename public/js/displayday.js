@@ -1,5 +1,9 @@
 // Docs at http://simpleweatherjs.com
 $(document).ready(function() {
+    updateCalendar();
+});
+
+function updateCalendar() {
 	var today = moment();
 	var html = ""
 	html += '<div>';
@@ -11,7 +15,7 @@ $(document).ready(function() {
 	$('#displayday').addClass('white')
 		.addClass('valign-wrapper')
 		.html(html);
-});
+}
 
 // Your Client ID can be retrieved from your project in the Google
 // Developer Console, https://console.developers.google.com
@@ -85,24 +89,31 @@ function listUpcomingEvents() {
 	});
 
 	request.execute(function(resp) {
+    clearCalendarList();
 	var events = resp.items;
 	if (events.length > 0) {
-		appendPre(htmlForCalendarEventList(events));
+		appendCalendarList(htmlForCalendarEventList(events));
 	} else {
-		appendPre('No upcoming events found.');
+		appendCalendarList('No upcoming events found.');
 	}
 	});
 }
 
 /**
-* Append a pre element to the body containing the given message
-* as its text node.
+* Add html to calendar list
 *
 * @param {string} message Text to be placed in pre element.
 */
-function appendPre(message) {
-    var currentHTML = $('#output').html();
-    $('#output').html(currentHTML + message);
+function appendCalendarList(newContent) {
+    var currentHTML = $('#calendar_output').html();
+    $('#calendar_output').html(currentHTML + newContent);
+}
+
+/**
+* Remove current content from calendar section
+*/
+function clearCalendarList() {
+    $('#calendar_output').html("");
 }
 
 
@@ -133,4 +144,10 @@ function htmlForCalendarEvent(event) {
     return '<li class="collection-item"><h5>' + event.summary
                 + '</h5><p>' + startTimeString + '</p></li>';
 }
+
+setTimeout(function() {
+    updateCalendar();
+    listUpcomingEvents();
+}, 50000);
+
 
