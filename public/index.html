@@ -11,34 +11,34 @@
 		<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 	</head>
     <body>
-		<div class="height_wrap"> <!-- Column height adjustment wrapper -->
-			<div class="eq_col anchor">
-				<div id="displayday">
-					<!-- Displays Month, day, and day of week -->
-				</div>
-				<div id="displayevents">
-					<div id="authorize-div">
-						<span>Authorize access to Google Calendar API</span>
-						<!--Button for the user to click to initiate auth sequence -->
-						<button id="authorize-button" onclick="handleAuthClick(event)">
-						Authorize
-						</button>
-					</div>
-					<div id="calendar_output"></div>
-				</div>
-			</div>
-			<div id="weather_background" class="eq_col weather_color">
+        <nav>
+        <div class="nav-wrapper weather_color">
+            <div id="displayday" class="center"></div>
+        </div>
+        </nav>
+        <div class="height_wrap"> <!-- Column height adjustment wrapper -->
+            <div id="weather_background" class="eq_col anchor weather_color">
 				<div id="weather">
 					<img src="https://i1.wp.com/cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif" alt="Loading..." class="loading">
 				</div>
-			</div><!-- Weather Widget: Docs at http://http://simpleweatherjs.com -->
-		</div>
+            </div><!-- Weather Widget: Docs at http://http://simpleweatherjs.com -->
+			<div class="eq_col">
+				<div id="displayevents">
+                    <div id="authorize-div">
+                        <div class="center-align">
+						    <p class="flow-text">Authorize access to Google Calendar API</p>
+						    <button id="authorize-button" class="btn waves-effect waves-light"  onclick="handleAuthClick(event)">Authorize</button>
+                        </div>
+					</div>
+					<div id="calendar_output"></div>
+				</div>
+			</div>		
+        </div>
 		
         
         <!-- Import Javascript -->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/smat.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
 		<script type="text/javascript" src="js/displayday.js"></script>

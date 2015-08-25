@@ -8,9 +8,10 @@ function refreshWeatherInfo() {
 
             setWeatherColorForTemperature(weather.temp);
             
-            var html = '<h1 class="icon-' + weather.code + '"></h1>';
+            var html = '';
             html += '<h2>' + weather.temp + '&deg;</h2>';
-            html += '<h5>' + weather.currently + '</h5>';
+            html += '<h1 class="icon-' + weather.code + '"></h1>';
+            html += '<h3>' + weather.currently + '</h3>';
             var timestamp = moment(weather.updated);
             html += '<p class="updated">Updated ' + moment(timestamp).fromNow() + '</p>';
             $('#weather').html(html);
