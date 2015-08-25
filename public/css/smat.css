@@ -23,3 +23,9 @@
     left: 0;
     background: #fff;
 }
+
+/* Materialize Overrides */
+.collection {
+    margin-top: 0px;
+}
+

@@ -1,20 +1,8 @@
-// Docs at http://simpleweatherjs.com
-$(document).ready(function() {
-    updateCalendar();
-});
-
-function updateCalendar() {
+function updateCalendarData() {
 	var today = moment();
-	var html = ""
-	html += '<div>';
-	html += '<div class="valign weather_color"><h3>'+today.format('MMM')+'</h3></div>';
-	html += '<div class="valign"><h1>'+today.date()+'</h1></div>';
-	html += '<div class="valign"><h3>'+today.format('dddd')+'</h3></div>';
-	html += '<div class="valign weather_color"><h3>Today&#39s Agenda</h3></div>';
-	html += '</div>';
-	$('#displayday').addClass('white')
-		.addClass('valign-wrapper')
-		.html(html);
+    $('#displayday').html('<h3>' + today.format('dddd') + ', '
+                                + today.format('MMM') + ' '
+                                + today.date() + '</h3>');
 }
 
 // Your Client ID can be retrieved from your project in the Google
@@ -27,6 +15,7 @@ var SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 * Check if current user has authorized this application.
 */
 function checkAuth() {
+    console.log('Checking authorization status for Google Calendar...');
 	gapi.auth.authorize(
 	{
 		'client_id': CLIENT_ID,
@@ -43,10 +32,13 @@ function checkAuth() {
 function handleAuthResult(authResult) {
 	var authorizeDiv = document.getElementById('authorize-div');
 	if (authResult && !authResult.error) {
+        console.log('Handling Google Authentication result: Success');
 		// Hide auth UI, then load client library.
 		authorizeDiv.style.display = 'none';
 		loadCalendarApi();
 	} else {
+        console.log('Handling Google Authentication result: Failure');
+        console.log(authResult.error);
 		// Show auth UI, allowing the user to initiate authorization by
 		// clicking authorize button.
 		authorizeDiv.style.display = 'inline';
@@ -145,8 +137,14 @@ function htmlForCalendarEvent(event) {
                 + '</h5><p>' + startTimeString + '</p></li>';
 }
 
+$(document).ready(function() {
+	$('#displayday').addClass('white')
+		.addClass('weather_color')
+    updateCalendarData();
+});
+
 setTimeout(function() {
-    updateCalendar();
+    updateCalendarData();
     listUpcomingEvents();
 }, 50000);
 
