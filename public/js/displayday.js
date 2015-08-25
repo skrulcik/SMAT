@@ -71,24 +71,28 @@ function loadCalendarApi() {
 * appropriate message is printed.
 */
 function listUpcomingEvents() {
-	var request = gapi.client.calendar.events.list({
-	'calendarId': 'primary',
-	'timeMin': (new Date()).toISOString(),
-	'showDeleted': false,
-	'singleEvents': true,
-	'maxResults': 10,
-	'orderBy': 'startTime'
-	});
-
-	request.execute(function(resp) {
-    clearCalendarList();
-	var events = resp.items;
-	if (events.length > 0) {
-		appendCalendarList(htmlForCalendarEventList(events));
-	} else {
-		appendCalendarList('No upcoming events found.');
-	}
-	});
+    if (gapi.client.calendar) {
+    	var request = gapi.client.calendar.events.list({
+        	'calendarId': 'primary',
+        	'timeMin': (new Date()).toISOString(),
+        	'showDeleted': false,
+        	'singleEvents': true,
+        	'maxResults': 10,
+        	'orderBy': 'startTime'
+         });
+        
+         request.execute(function(resp) {
+              clearCalendarList();
+          	var events = resp.items;
+          	if (events.length > 0) {
+          		appendCalendarList(htmlForCalendarEventList(events));
+          	} else {
+          		appendCalendarList('No upcoming events found.');
+          	}
+         });
+    } else {
+        console.log('Calendar API not loaded when requesting event list');
+    }
 }
 
 /**
