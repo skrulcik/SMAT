@@ -7,7 +7,7 @@ bash "scripts/update_version" > /dev/null
 bash "scripts/expose_clientID" > /dev/null
 
 # Copy website files
-sudo cp -r ./public/* /var/www/
+sudo cp -r ./public/* /var/www/smat/
 
 # replace real keys with placeholders
 bash "scripts/hide_clientID" > /dev/null
