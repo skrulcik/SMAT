@@ -7,7 +7,15 @@ bash "scripts/update_version" > /dev/null
 bash "scripts/expose_clientID" > /dev/null
 
 # Copy website files
-sudo cp -r ./public/* /var/www/smat/
+if [ -d '/var/www/html' ]
+then
+  # On Raspberry Pi, website files go inside of html, not www directly
+  mkdir -p /var/www/html/smat/
+  sudo cp -r ./public/* /var/www/html/smat/
+else
+  mkdir -p /var/www/smat/
+  sudo cp -r ./public/* /var/www/smat/
+fi
 
 # replace real keys with placeholders
 bash "scripts/hide_clientID" > /dev/null
