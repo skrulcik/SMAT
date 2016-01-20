@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Update revisions number
+bash "scripts/update_version" > /dev/null
+
+# add keys to file
+bash "scripts/expose_clientID" > /dev/null
+
+# Copy website files
+cp -r ./public/* ~/www/smat/
+
+# replace real keys with placeholders
+bash "scripts/hide_clientID" > /dev/null
+
+echo "Finished deploying version $(cat version)"
+
+
